@@ -14,8 +14,8 @@ c = conn.cursor()
             #age text
          #)""")
 
-patient = Patient(1, "Anna", "Kowalska", 28)
-patient2 = Patient(2, "Jan", "Nowak", 30)
+#patient = Patient(1, "Anna", "Kowalska", 28)
+#patient2 = Patient(2, "Jan", "Nowak", 30)
 
 #c.execute("INSERT INTO patient VALUES (:id, :name, :last, :age)",
 #                                    (patient.id, patient.name, patient.last, patient.age))

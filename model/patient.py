@@ -1,8 +1,7 @@
 class Patient:
 
-    def __init__(self, id, name, last,
-                 age):
-        self.id = id
-        self.name = name
-        self.last = last
-        self.age = age
+    def __init__(self):
+        self.id = None
+        self.name = None
+        self.last = None
+        self.age = None
