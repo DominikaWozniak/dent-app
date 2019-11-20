@@ -1,7 +1,7 @@
 class Visit:
 
-    def __init__(self, id, patient, date, description):
-        self.id = id
-        self.patient = patient
-        self.date = date
-        self.description = description
+    def __init__(self):
+        self.id = None
+        self.patient = None
+        self.date = None
+        self.description = None
