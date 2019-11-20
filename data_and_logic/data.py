@@ -44,6 +44,9 @@ c = conn.cursor()
 
 #)""")
 
+#c.execute("DELETE FROM visit WHERE visit_date = '21-11-2034'")
+#conn.commit()
+
 #conn.commit()
 #c.execute("SELECT * FROM patient")
 #headers = ['ID', 'NAME', 'FIRSTNAME', 'AGE']

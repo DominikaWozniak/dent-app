@@ -8,9 +8,11 @@ def sign_in():
     c.execute(find_user, [(login), (password)])
     conn.commit()
     results = c.fetchall()
+    print("")
     if results:
         for i in results:
             print("Witaj " + i[1])
+            print("")
             menu()
 
     else:
@@ -82,9 +84,14 @@ def add_new_patient():
 
 def find_all_patient():
     c.execute("SELECT * FROM patient")
-    headers = ['ID', 'NAME', 'FIRSTNAME', 'AGE']
-    print(headers)
-    print(*c.fetchall(), sep='\n')
+
+    print("| ID     | NAME           | LASTNAME        | AGE   |")
+    for i in c.fetchall():
+        print("|", i[0], " " * (5-len(str(i[0]))), "|",
+              i[1], " " * (13-len(i[1])), "|",
+              i[2], " " * (14-len(i[2])), "|",
+              i[3], " " * (4-len(i[3])), "|")
+    print("")
     print("1. Wyjście do menu.")
     option = input("Wybierz opcję: ")
     if option == "1":
@@ -100,9 +107,14 @@ def find_patient_by_id():
     c.execute(find_id, [(id)])
     conn.commit()
     results = c.fetchall()
+    print("| ID     | NAME           | LASTNAME        | AGE   |")
     if results:
         for i in results:
-            print(i)
+            print("|", i[0], " " * (5 - len(str(i[0]))), "|",
+                  i[1], " " * (13 - len(i[1])), "|",
+                  i[2], " " * (14 - len(i[2])), "|",
+                  i[3], " " * (4 - len(i[3])), "|")
+    print("")
     print("1. Wyjście do menu.")
     option = input("Wybierz opcję: ")
     if option == "1":
@@ -118,9 +130,14 @@ def find_patient_by_last():
     c.execute(find_last, [(last)])
     conn.commit()
     results = c.fetchall()
+    print("| ID     | NAME           | LASTNAME        | AGE   |")
     if results:
         for i in results:
-            print(i)
+            print("|", i[0], " " * (5 - len(str(i[0]))), "|",
+                  i[1], " " * (13 - len(i[1])), "|",
+                  i[2], " " * (14 - len(i[2])), "|",
+                  i[3], " " * (4 - len(i[3])), "|")
+    print("")
     print("1. Wyjście do menu.")
     option = input("Wybierz opcję: ")
     if option == "1":
@@ -151,9 +168,11 @@ def add_new_visit():
 
 def find_all_visit():
     c.execute("SELECT * FROM visit")
-    headers = ['ID', 'PATIENT_ID', 'DATE', 'DESCRIPTION']
-    print(headers)
-    print(*c.fetchall(), sep='\n')
+    print("| ID   | PATIENT ID   | VISIT DATE   | DESCRIPTION                                |")
+    for i in c.fetchall():
+        print("|", i[0], " " * (3-len(i[0])), "| ", i[1], " " * (10-len(str(i[1]))), "|",
+              i[2], " " * (11-len(i[2])), "|", i[3], " " * (41-len(i[3])), "|")
+    print("")
     print("1. Wyjście do menu.")
     option = input("Wybierz opcję: ")
     if option == "1":
@@ -164,14 +183,17 @@ def find_all_visit():
 
 
 def find_visit_by_id():
-    id = input("Podaj ID wizyty. ")
+    id = input("Podaj ID wizyty: ")
     find_id = "SELECT * FROM visit WHERE id = ?"
     c.execute(find_id, [(id)])
     conn.commit()
     result = c.fetchall()
+    print("| ID   | PATIENT ID   | VISIT DATE   | DESCRIPTION                                |")
     if result:
         for i in result:
-            print(i)
+            print("|", i[0], " " * (3 - len(i[0])), "| ", i[1], " " * (10 - len(str(i[1]))), "|",
+                  i[2], " " * (11 - len(i[2])), "|", i[3], " " * (41 - len(i[3])), "|")
+    print("")
     print("1. Wyjście do menu.")
     option = input("Wybierz opcję: ")
     if option == "1":
@@ -183,6 +205,7 @@ def find_visit_by_id():
 def choose_option_find_patient():
     print("1. Znajdź pacjenta po nr ID. ")
     print("2. Znajdź pacjenta po nazwisku. ")
+    print("")
     option = input("Wybierz opcję: ")
     if option == "1":
         find_patient_by_id()
@@ -202,6 +225,7 @@ def menu():
     print("5. Pokaż wszystkie wizyty.")
     print("6. Znajdź wizytę.")
     print("7. Wyjdź z programu. ")
+    print("")
 
     option = input("Wybierz opcję: ")
 
@@ -228,4 +252,7 @@ def menu():
 start()
 #find_patient_by_id()
 #find_patient_by_last()
+#find_all_visit()
+#find_all_patient()
+#find_visit_by_id()
 
