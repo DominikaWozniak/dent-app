@@ -202,6 +202,7 @@ def find_visit_by_id():
         print("Nieznane polecenie.")
         find_visit_by_id()
 
+
 def choose_option_find_patient():
     print("1. Znajdź pacjenta po nr ID. ")
     print("2. Znajdź pacjenta po nazwisku. ")
@@ -215,9 +216,51 @@ def choose_option_find_patient():
         print("Nieznane polecenie. ")
         choose_option_find_patient()
 
+def delete_patient_by_id():
+    id = input("Podaj id pacjenta: ")
+    delete_id = "DELETE FROM patient WHERE id = ?"
+    c.execute(delete_id, [id])
+    conn.commit()
+    print("Usunięto. ")
+    print("1. Powrót do menu.")
+    print("")
+    option = input("Wybierz opcję: ")
+    if option == "1":
+        menu()
+    else:
+        print("Nieznane polecenie.")
+
+
+def delete_visit_by_id():
+    id = input("Podaj id wizyty: ")
+    delete_id = "DELETE FROM visit WHERE id = ?"
+    c.execute(delete_id, [id])
+    conn.commit()
+    print("Usunięto. ")
+    print("1. Powrót do menu.")
+    print("")
+    option = input("Wybierz opcję: ")
+    if option == "1":
+        menu()
+    else:
+        print("Nieznane polecenie.")
+
+def admin_panel():
+    print("1. Usuń pacjenta z bazy.")
+    print("2. Usuń wizytę.")
+    print("")
+    option = input("Wybierz opcję: ")
+    if option == "1":
+        delete_patient_by_id()
+    elif option == "2":
+        delete_visit_by_id()
+    else:
+        print("")
+        print("Nieznane polecenie.")
 
 
 def menu():
+    print("0. Admin panel.")
     print("1. Dodaj pacjenta.")
     print("2. Dodaj wizytę.")
     print("3. Pokaż bazę pacjentów.")
@@ -243,6 +286,8 @@ def menu():
         find_visit_by_id()
     elif option == "7":
         print("Koniec programu.")
+    elif option == "0":
+        admin_panel()
     else:
         print("Nieznane polecenie.")
 
